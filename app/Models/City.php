@@ -31,4 +31,9 @@ class City extends Model
             ->withPivot('distance_km');
             
     }
+
+    // public function CityDistance()
+    // {
+    //     return $this->hasOne(CityDistance::class);
+    // }
 }

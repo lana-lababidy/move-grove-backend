@@ -20,5 +20,8 @@ class Car extends Model
     {
         return $this->hasOne(Trip::class);
     }
-    
+    // public function carName()
+    // {
+    //     return $this->hasOne(CarsName::class);
+    // }
 }

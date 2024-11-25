@@ -17,6 +17,8 @@ return new class extends Migration
             // $table->foreignId('destination_id')->constrained('cities')->onDelete('cascade');
             $table->decimal('distance_km', 8, 2)->nullable();  
             $table->timestamps();
+
+            
         });
     }
 

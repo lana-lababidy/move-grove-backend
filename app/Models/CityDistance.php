@@ -24,4 +24,8 @@ class CityDistance extends Model
     {
         return $this->belongsTo(City::class, 'destination_id');
     }
+    // public function city()
+    // {
+    //     return $this->belongsTo(City::class);
+    // }
 }

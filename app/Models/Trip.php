@@ -18,7 +18,6 @@ class Trip extends Model
         'car_id',
         'dateTime',
         'notes',
-        'plate_number',
     ];
 
     public function driver()

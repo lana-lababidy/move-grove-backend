@@ -22,7 +22,12 @@ return new class extends Migration
                     $table->string('user_session')->nullable();
                     $table->rememberToken();
                     $table->timestamps();
-                    
+                    $table->string('car_mechanics_image')->nullable();
+                    $table->string('driver_certificate_copy')->nullable();
+                    $table->string('car_insurance_copy')->nullable();
+                    $table->string('car_image')->nullable();
+                    $table->string('car_front_image')->nullable();
+                    $table->string('car_back_image')->nullable();
                     // $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
         
                 });
