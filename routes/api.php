@@ -76,7 +76,7 @@ Route::middleware(['role:SuperAdmin'])->group(function () {
     Route::delete('/delete-city/{id}', [CityController::class, 'deleteCity']);
 });
 
-Route::middleware(['role:Clinet'])->group(function () {
+Route::middleware(middleware: ['role:Clinet'])->group(function () {
     Route::get('/join-trip', [TripController::class, 'joinTrip']);
     Route::get('/add-trip', [TripController::class, 'addTrip']);
 });

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ToReuseController extends Controller
 {
+
     /*ملاااااااااحظة 
 استرجاع الرحلات التي تقدم إليها الراكب:
 يمكنك استرجاع الرحلات 
@@ -19,6 +20,8 @@ $trips = $user->tripPassengers()->where('status', 'pending')->get();
 
     public function getTripsStatusById($id)
     {
+        $this->authorize('trips-passengers');
+
         // مين بدو يعملا
         if (Auth::check() && Auth::user()->id == 2) {
             $trip = Trip::find($id);

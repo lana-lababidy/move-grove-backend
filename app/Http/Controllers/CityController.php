@@ -9,6 +9,8 @@ class CityController extends Controller
 {
     public function addCity(Request $request)
     {
+        $this->authorize(ability: 'add-city'); 
+
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
@@ -19,15 +21,16 @@ class CityController extends Controller
 
         return response()->json(['message' => 'City added successfully', 'city' => $city], 201);
     }
-    public function deleteCity($id)
-    {
-        $city = City::find($id);
+    // public function deleteCity($id)
+    // {
 
-        if (!$city) {
-            return response()->json(['message' => 'The city not found']);
-        }
+    //     $city = City::find($id);
 
-        $city->delete();
-        throw response()->json(['message' => 'City deleted successfully']);
-    }
+    //     if (!$city) {
+    //         return response()->json(['message' => 'The city not found']);
+    //     }
+
+    //     $city->delete();
+    //     throw response()->json(['message' => 'City deleted successfully']);
+    // }
 }

@@ -9,12 +9,9 @@ use Spatie\Permission\Models\Permission;
 
 class CarController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:Driver');
-    }
     public function addCar(Request $request)
     {
+        $this->authorize('add-car'); 
         if ($request->user()->role !== 'driver') {
             return response()->json(['error' => 'Unauthorized'], 403); // رد غير مصرح به إذا لم يكن سائق
         }
@@ -43,11 +40,8 @@ class CarController extends Controller
 
     public function editCar(Request $request, $id)
     {
-        // // التحقق من أن المستخدم هو سائق ولديه صلاحية تعديل السيارة
-        // if (!$request->user()->hasRole('driver')) {
-        //     return response()->json(['error' => 'Unauthorized'], 403); // رد غير مصرح به إذا لم يكن سائق
-        // }
-    
+        $this->authorize('edit-car'); 
+        
         if (!$request->user()->can('edit car')) {
             return response()->json(['error' => 'Unauthorized'], 403); // تحقق من الصلاحية لتعديل السيارة
         }
@@ -80,6 +74,8 @@ class CarController extends Controller
     
     public function deleteCar($value)
     {
+        $this->authorize('delete-car'); 
+
 
         $car = Car::find($value);
 
