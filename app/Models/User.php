@@ -29,6 +29,7 @@ class User extends Authenticatable
         'expire_at',
         'fullname',
         'user_session',
+        'fcm_token',
     ];
 
     protected $hidden = [
