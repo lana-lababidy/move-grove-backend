@@ -15,8 +15,10 @@ class TripStatusSeeder extends Seeder
     {
         $TripStatuses = [
             ['name' => 'Avilable', 'code' => '1'],
+            ['name' => 'pending', 'code' => '2'],
             ['name' => 'Done', 'code' => '4'],
             ['name' => 'Cancelled', 'code' => '5']
+            
         ];
 
         DB::table('trip_statuses')->insert($TripStatuses);
