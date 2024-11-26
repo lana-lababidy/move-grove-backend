@@ -69,20 +69,24 @@ Route::post('/cwm', [continueWithMobile::class, 'continueWithMobile']);
 
 
 
+// SuperAdmin routes
 Route::middleware(['role:SuperAdmin'])->group(function () {
     Route::post('/add-car', [CarController::class, 'addCar']);
     Route::post('/edit-car', [CarController::class, 'editCar']);
     Route::delete('/delete-car', [CarController::class, 'deleteCar']);
-    Route::delete('/delete-city/{id}', [CityController::class, 'deleteCity']);
+    // Route::delete(uri: '/delete-city/{id}', [CityController::class, 'deleteCity']);
 });
 
-Route::middleware(middleware: ['role:Clinet'])->group(function () {
+// Client routes
+Route::middleware(['role:Client'])->group(function () {
     Route::get('/join-trip', [TripController::class, 'joinTrip']);
+    Route::get('/create-trip', [TripController::class, 'createTrip']);
     Route::get('/add-trip', [TripController::class, 'addTrip']);
 });
 
-Route::middleware(['role:Clinet', 'role:SuperAdmin'])->group(function () {
-    Route::delete('/avilable-trips', [GetTripsController::class, 'index']);
-    Route::get('/get-trips', [GetTripsController::class, 'getTrips']);
+// Routes for either Client or SuperAdmin
+Route::middleware(['role:Client|SuperAdmin'])->group(function () {
+    Route::delete('/available-trips', [GetTripsController::class, 'index']);
+    Route::get('/trips', [GetTripsController::class, 'getTrips']);
     Route::get('/trips-passengers', [ToReuseController::class, 'getTripsPassengerStatusById']);
 });
