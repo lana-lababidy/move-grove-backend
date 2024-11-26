@@ -30,6 +30,11 @@ class User extends Authenticatable
         'fullname',
         'user_session',
         'fcm_token',
+        'car_mechanics_image',
+        'driver_certificate_copy',
+        'car_image',
+        'car_front_image',
+        'car_back_image',
     ];
 
     protected $hidden = [
