@@ -21,7 +21,7 @@ class SettingSeeder extends Seeder
     
             Setting::create([
                 'key' => 'company_profit_rate',
-                'value' => 0.20, // نسبة ربح الشركة (20%)
+                'value' => 0.10, // نسبة ربح الشركة (10%)
             ]);
     
             Setting::create([
