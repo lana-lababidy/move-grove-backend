@@ -16,7 +16,7 @@ class SettingSeeder extends Seeder
     {
             Setting::create([
                 'key' => 'fuel_price_per_liter',
-                'value' => 1.5, // سعر اللتر من الوقود
+                'value' => 30000, // سعر اللتر من الوقود
             ]);
     
             Setting::create([

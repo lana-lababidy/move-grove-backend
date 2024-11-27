@@ -70,6 +70,11 @@ class User extends Authenticatable
         return $this->hasMany(TripPassenger::class);
     }
 
+    
+    public function notification()
+    {
+        return $this->hasMany(Notification::class);
+    }
     public function ratings()
     {
         return $this->morphMany(Rating::class, 'ratingable');

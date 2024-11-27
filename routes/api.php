@@ -67,26 +67,27 @@ Route::post('/cwm', [continueWithMobile::class, 'continueWithMobile']);
 
 // Route::post('/cost-trip', [TripCost::class, 'costTrip']);
 
+Route::post('/add-car', [CarController::class, 'addCar']);
 
+Route::get('/add-trip', [TripController::class, 'addTrip']);
 
 // SuperAdmin routes
-Route::middleware(['role:SuperAdmin'])->group(function () {
-    Route::post('/add-car', [CarController::class, 'addCar']);
-    Route::post('/edit-car', [CarController::class, 'editCar']);
-    Route::delete('/delete-car', [CarController::class, 'deleteCar']);
-    // Route::delete(uri: '/delete-city/{id}', [CityController::class, 'deleteCity']);
-});
+// Route::middleware(['role:SuperAdmin'])->group(function () {
+//     Route::post('/add-car', [CarController::class, 'addCar']);
+//     Route::post('/edit-car', [CarController::class, 'editCar']);
+//     Route::delete('/delete-car', [CarController::class, 'deleteCar']);
+//     // Route::delete(uri: '/delete-city/{id}', [CityController::class, 'deleteCity']);
+// });
+// // Client routes
+// Route::middleware(['role:Client'])->group(function () {
+//     Route::get('/join-trip', [TripController::class, 'joinTrip']);
+//     Route::get('/create-trip', [TripController::class, 'createTrip']);
+//     Route::get('/add-trip', [TripController::class, 'addTrip']);
+// });
 
-// Client routes
-Route::middleware(['role:Client'])->group(function () {
-    Route::get('/join-trip', [TripController::class, 'joinTrip']);
-    Route::get('/create-trip', [TripController::class, 'createTrip']);
-    Route::get('/add-trip', [TripController::class, 'addTrip']);
-});
-
-// Routes for either Client or SuperAdmin
-Route::middleware(['role:Client|SuperAdmin'])->group(function () {
-    Route::delete('/available-trips', [GetTripsController::class, 'index']);
-    Route::get('/trips', [GetTripsController::class, 'getTrips']);
-    Route::get('/trips-passengers', [ToReuseController::class, 'getTripsPassengerStatusById']);
-});
+// // Routes for either Client or SuperAdmin
+// Route::middleware(['role:Client|SuperAdmin'])->group(function () {
+//     Route::delete('/available-trips', [GetTripsController::class, 'index']);
+//     Route::get('/trips', [GetTripsController::class, 'getTrips']);
+//     Route::get('/trips-passengers', [ToReuseController::class, 'getTripsPassengerStatusById']);
+// });
