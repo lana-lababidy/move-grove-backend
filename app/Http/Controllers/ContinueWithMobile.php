@@ -41,7 +41,7 @@ class ContinueWithMobile extends Controller
             ]);
         }
         return response()->json([
-            'user' => $user,
+            'data' => $user,
             'token' => $token,
         ], 200);
     }

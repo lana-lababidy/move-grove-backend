@@ -6,29 +6,34 @@ use App\Models\Car;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Validator;
 
 class CarController extends Controller
 {
     public function addCar(Request $request)
     {
-        $this->authorize('add-car'); 
-        if ($request->user()->role !== 'driver') {
-            return response()->json(['error' => 'Unauthorized'], 403); // رد غير مصرح به إذا لم يكن سائق
-        }
+        // $this->authorize('add-car'); 
+        // if ($request->user()->role !== 'driver') {
+        //     return response()->json(['error' => 'Unauthorized'], 403); // رد غير مصرح به إذا لم يكن سائق
+        // }
 
-        // تحقق من الصلاحية (أضف الكود الخاص بالتحقق هنا إذا لزم الأمر)
-        if (!$request->user()->can('add car')) {
-            return response()->json(['error' => 'Unauthorized'], 403); // تحقق من الصلاحية لإضافة سيارة
-        }
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
+        // // تحقق من الصلاحية (أضف الكود الخاص بالتحقق هنا إذا لزم الأمر)
+        // if (!$request->user()->can('add car')) {
+        //     return response()->json(['error' => 'Unauthorized'], 403); // تحقق من الصلاحية لإضافة سيارة
+        // }
+        $request->validate([
+            'fullname' => 'required|string|max:255',
+            'gender' => 'required|string|in:male,female', // Only 'male' or 'female' are allowed
         ]);
-
         
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'required|string|max:255',
+        // ]);
+
 
         // حفظ البيانات في قاعدة البيانات
         $car = new Car();
-        $car->name = $validatedData['name'];
+        $car->name = $request['name'];
         $car->save();
 
         return response()->json([
@@ -56,12 +61,11 @@ class CarController extends Controller
         // if ($car->user_id !== $request->user()->id) {
         //     return response()->json(['error' => 'You can only edit your own cars'], 403); // إذا كانت السيارة ليست ملكًا للسائق
         // }
-    
-        $validatedData = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
         ]);
     
-        $car->name = $validatedData['name'];
+        $car->name = $request['name'];
         $car->save();
     
         return response()->json([

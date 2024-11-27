@@ -10,7 +10,7 @@ class RatingController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $request->validate(rules: [
             'ratingable_id' => 'required|exists:trips,id', 
             'ratingable_type' => 'required|string|in:App\Models\Trip,App\Models\User',  
             'rating' => 'required|integer|min:1|max:5',  
@@ -56,21 +56,3 @@ class RatingController extends Controller
         ]);
     }
 }
-
-/* في داعي لهدول
-// التحقق من صلاحيات المستخدم
-        $user = auth()->user();
-        
-        // العثور على الرحلة
-        $trip = Trip::findOrFail($tripId);
-        
-        // تحديد نوع التقييم بناءً على الدور
-        if ($user->hasRole('driver')) {
-            $ratingableType = 'App\Models\Driver';  // إذا كان السائق هو الذي سيُقيم
-            $userId = $trip->driver_id;  // السائق هو المستخدم الذي سيُقيّم
-        } elseif ($user->hasRole('passenger')) {
-            $ratingableType = 'App\Models\Passenger';  // إذا كان الراكب هو الذي سيُقيم
-            $userId = $trip->passenger_id;  // الراكب هو المستخدم الذي سيُقيّم
-        } else {
-            return response()->json(['error' => 'Unauthorized'], 403);  // في حال كان المستخدم ليس سائقًا أو راكبًا
-        }*/

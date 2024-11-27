@@ -9,15 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ToReuseController extends Controller
 {
-
-    /*ملاااااااااحظة 
-استرجاع الرحلات التي تقدم إليها الراكب:
-يمكنك استرجاع الرحلات 
-
-$user = User::find($user_id);
-$trips = $user->tripPassengers()->where('status', 'pending')->get();
-*/
-
     public function getTripsStatusById($id)
     {
         $this->authorize('trips-passengers');
@@ -53,7 +44,7 @@ $trips = $user->tripPassengers()->where('status', 'pending')->get();
         }
 
         $passenger = $trip->passengers()->find($passengerId);
-
+        
         // If the passenger is not found, return an error response
         if (!$passenger) {
             return response()->json([

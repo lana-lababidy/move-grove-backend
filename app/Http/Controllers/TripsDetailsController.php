@@ -18,7 +18,7 @@ class TripsDetailsController extends Controller
         $passengers = $trip->passengers()->where('status', 'pending')->get();
 
         return response()->json([
-            'trip' => $trip,
+            'data' => $trip,
             'passengers' => $passengers,
         ]);
     }

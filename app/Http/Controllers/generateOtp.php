@@ -31,7 +31,7 @@ class generateOtp extends Controller
         return response()->json(
             data: [
                 'message' => 'OTP generated and sent successfully',
-                'otp' => $otp,
+                'data' => $otp,
             ],
         );
     }
