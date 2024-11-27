@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
             $table->integer('total_seats');
-            $table->decimal('price', 8, 2);
+            $table->decimal('price');
             $table->dateTime('dateTime');
             $table->string('notes');
 
