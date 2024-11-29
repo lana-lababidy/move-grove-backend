@@ -21,7 +21,7 @@ class UpdateUserInfo extends Controller
 
         $validator = Validator::make($request->all(), [
             'fullname' => 'required|string|max:255',
-            'gender' => 'required|string|in:male,female', // Only 'male' or 'female' are allowed
+            'gender' => 'required|string|in:male,female',
         ]);
 
         // Update user information
