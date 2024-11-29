@@ -57,14 +57,13 @@ class User extends Authenticatable
         return $this->hasOne(TripPassenger::class);
     }
 
-    // علاقة Many-to-Many بين المستخدم والرحلات عبر جدول وسيط 'trip_user'
     public function trips()
     {
         return $this->belongsToMany(Trip::class, 'trip_user')
-                    ->withPivot('status'); // إضافة عمود الحالة في الجدول الوسيط
+                    ->withPivot('status'); 
+                    // إضافة عمود الحالة في الجدول الوسيط
     }
 
-    // علاقة مع الركاب في الرحلات عبر جدول 'trip_passengers'
     public function tripPassengers()
     {
         return $this->hasMany(TripPassenger::class);

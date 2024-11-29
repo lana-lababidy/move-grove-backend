@@ -18,17 +18,13 @@ class TripPassenger extends Model
         'trip_passenger',
     ];
 
-    /**
-     * Define the relationship with the User model for the client.
-     */
+    
     public function client()
     {
         return $this->belongsTo(User::class, 'client_id');
     }
 
-    /**
-     * Define the relationship with the Trip model.
-     */
+  
     public function trip()
     {
         return $this->belongsTo(Trip::class, 'trip_id');
@@ -50,8 +46,4 @@ class TripPassenger extends Model
         return $this->belongsTo(City::class, 'destination_id');
     }
 
-    // public function trip_passenger()
-    // {
-    //     return $this->hasOne(Trip_passengers::class);
-    // }
 }

@@ -32,8 +32,5 @@ class City extends Model
             
     }
 
-    // public function CityDistance()
-    // {
-    //     return $this->hasOne(CityDistance::class);
-    // }
+    
 }

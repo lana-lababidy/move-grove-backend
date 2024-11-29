@@ -13,6 +13,5 @@ class OTP extends Model
         'mobile_number',
         'otp',
         'is_used',
-       // 'expires_at'
     ];
 }
