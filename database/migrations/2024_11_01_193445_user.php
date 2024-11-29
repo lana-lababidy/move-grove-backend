@@ -28,7 +28,7 @@ return new class extends Migration
                     $table->string('car_image')->nullable();
                     $table->string('car_front_image')->nullable();
                     $table->string('car_back_image')->nullable();
-                    $table->string('fcm_token');
+                    $table->string('fcm_token')->nullable();
                     // $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
         
                 });

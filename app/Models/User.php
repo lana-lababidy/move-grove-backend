@@ -27,7 +27,7 @@ class User extends Authenticatable
         'session',
         'otp',
         'expire_at',
-        'fullname',
+        'last_name',
         'user_session',
         'fcm_token',
         'car_mechanics_image',
