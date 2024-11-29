@@ -16,7 +16,6 @@ class ContinueWithMobile extends Controller
             'otp' => 'required|string|min:4|max:4',
         ]);
 
-        // إذا المدخلات غير صحيحة
         if ($validator->fails()) {
             return response()->json(['error' => 'Invalid Parameters'], 401);
         }
@@ -32,7 +31,8 @@ class ContinueWithMobile extends Controller
         if (!$otpRecord) {
             return response()->json(['error' => 'invalid OTP'], 401);
         }
-        // المستخدم old => بتجيبو
+//التأكد اذا المستخدم موجود واذا لا createToken (بتجيب القديم)
+
         $user = User::where('mobile_number', $request->mobile_number)->first();
         $token = $user->createToken('MobileAccessToken')->accessToken;
         if (!$user) {

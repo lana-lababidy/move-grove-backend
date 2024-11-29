@@ -26,9 +26,6 @@ class CarController extends Controller
             'gender' => 'required|string|in:male,female', // Only 'male' or 'female' are allowed
         ]);
         
-        // $validator = Validator::make($request->all(), [
-        //     'name' => 'required|string|max:255',
-        // ]);
 
 
         // حفظ البيانات في قاعدة البيانات
@@ -48,7 +45,8 @@ class CarController extends Controller
         $this->authorize('edit-car'); 
         
         if (!$request->user()->can('edit car')) {
-            return response()->json(['error' => 'Unauthorized'], 403); // تحقق من الصلاحية لتعديل السيارة
+            return response()->json(['error' => 'Unauthorized'], 403); 
+            // تحقق من الصلاحية لتعديل السيارة
         }
     
         // التحقق من أن السيارة موجودة

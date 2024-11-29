@@ -12,7 +12,6 @@ class loginAdmin extends Controller
 {
     public function loginAdmin(Request $request)
     {
-        //  التحقق من صحة البيانات 
         $validator = Validator::make($request->all(), [
             'username' => 'required|string',
             'mobile_number' => 'required|max:10',
