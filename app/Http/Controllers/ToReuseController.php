@@ -11,7 +11,6 @@ class ToReuseController extends Controller
 {
     public function getTripsStatusById($id)
     {
-        $this->authorize('trips-passengers');
 
         // مين بدو يعملا
         if (Auth::check() && Auth::user()->id == 2) {

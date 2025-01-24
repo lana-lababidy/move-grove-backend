@@ -24,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/*DONE */
 
 Route::post('/login-admin', [loginAdmin::class, 'loginAdmin']);
 
@@ -31,59 +32,29 @@ Route::post('/generate-otp', [generateOtp::class, 'generateOtp']);
 
 Route::post('/cwm', [continueWithMobile::class, 'continueWithMobile']);
 
-
-
-// Route::post('/join-trip', [TripController::class, 'joinTrip']);
-
-// Route::post('/add-trip', [TripController::class, 'addTrip']);
-
-// Route::get('/avilable-trips', action: [GetTripsController::class, 'index']);
-
-// Route::get('/get-trips', [GetTripsController::class, 'getTrips']);
-
-// Route::get('/trips-details', [TripsDetailsController::class, 'show']);
-
-// Route::get('/trips-status', [ToReuseController::class, 'getTripsStatusById']);
-
-// //مشكلة
-// Route::get('/trips-passengers', [ToReuseController::class, 'getTripsPassengerStatusById']);
-
-// Route::post('/ratings', [RatingController::class, 'store']);
-
-// Route::get('/showWithAverage', [RatingController::class, 'showWithAverage']);
-
-// Route::post('/cost-trip', [TripCost::class, 'costTrip']);
-
 Route::post('/add-car', [CarController::class, 'addCar']);
 
 Route::post('/add-trip', [TripController::class,'addTrip']);
 
 Route::post( '/add-city', [CityController::class, 'addCity']);
 
-Route::get('/cars', [CarController::class, 'getCars']);
+Route::get('/get-cars', [CarController::class, 'getCars']);
 
-Route::get('/cities', [CityController::class, 'getCities']);
+Route::get('/get-trips', [GetTripsController::class, 'getTrips']);
 
-Route::get('/get-Trip', [TripController::class, 'getTripByUser']);
+Route::get('/get-Trip-ByUser', [TripController::class, 'getTripByUser']);
 
+// //مشكلة
+Route::get('/trips-passengers', [ToReuseController::class, 'getTripsPassengerStatusById']);
 
-// SuperAdmin routes
-// Route::middleware(['role:SuperAdmin'])->group(function () {
-//     Route::post('/add-car', [CarController::class, 'addCar']);
-//     Route::post('/edit-car', [CarController::class, 'editCar']);
-//     Route::delete('/delete-car', [CarController::class, 'deleteCar']);
-// Route::get('/getTripByUser', [TripController::class, 'getTripByUser']);
-// });
-// // Client routes
-// Route::middleware(['role:Client'])->group(function () {
-//     Route::get('/join-trip', [TripController::class, 'joinTrip']);
-//     Route::get('/create-trip', [TripController::class, 'createTrip']);
-//     Route::get('/add-trip', [TripController::class, 'addTrip']);
-// });
+Route::post('/ratings', [RatingController::class, 'store']);
 
-// // Routes for either Client or SuperAdmin
-// Route::middleware(['role:Client|SuperAdmin'])->group(function () {
-//     Route::delete('/available-trips', [GetTripsController::class, 'index']);
-//     Route::get('/trips', [GetTripsController::class, 'getTrips']);
-//     Route::get('/trips-passengers', [ToReuseController::class, 'getTripsPassengerStatusById']);
-// });
+Route::get('/showWithAverage', [RatingController::class, 'showWithAverage']);
+
+Route::post('/cost-trip', [TripCost::class, 'costTrip']);
+
+Route::get('/avilable-trips', action: [GetTripsController::class, 'index']);
+
+Route::get('/trips-details', [TripsDetailsController::class, 'show']);
+
+Route::get('/trips-status', [ToReuseController::class, 'getTripsStatusById']);

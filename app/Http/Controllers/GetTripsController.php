@@ -10,7 +10,6 @@ class GetTripsController extends Controller
 {
     public function index(Request $request)
     {
-        $this->authorize('available-trips');
 
         // جلب الرحلات التي حالتها "نشطة" من خلال جدول TripStatus
         $trips = Trip::whereHas('TripStatus', function ($query) {
@@ -24,7 +23,6 @@ class GetTripsController extends Controller
     /*2*/
     public function getTrips(Request $request)
     {
-        $this->authorize('trips');
 
         // Default to 0 if not provided
 

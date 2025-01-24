@@ -9,19 +9,20 @@ class CityController extends Controller
 {
     public function addCity(Request $request)
     {
-        $this->authorize(ability: 'add-city');
 
-        $request->validate([
-            'c' => 'required|string|max:255',
-        ]);
 
         $city = new City();
         $city->name = $request->name;
         $city->save();
 
-        return response()->json(['message' => 'City added successfully', 'city' => $city], 201);
+        return response()->json([
+            'id' => $city->id,
+            'className' => 'city',
+            'name' => $city->name,
+        ], 201);
     }
- 
+
+
 public function getCities()
     {
         try {
