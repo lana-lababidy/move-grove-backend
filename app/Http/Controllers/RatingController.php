@@ -10,6 +10,7 @@ class RatingController extends Controller
 
     public function store(Request $request)
     {
+        
         $request->validate(rules: [
             'ratingable_id' => 'required|exists:trips,id', 
             'ratingable_type' => 'required|string|in:App\Models\Trip,App\Models\User',  

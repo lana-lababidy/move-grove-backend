@@ -6,12 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-
+        // if (!Schema::hasTable('users')) {
                 Schema::create('users', function (Blueprint $table) {
                     $table->id();
                     $table->string('last_name');
@@ -28,13 +25,13 @@ return new class extends Migration
                     $table->string('car_image')->nullable();
                     $table->string('car_front_image')->nullable();
                     $table->string('car_back_image')->nullable();
-                    $table->string('fcm_token')->nullable();
-                    // $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
-        
+                     $table->string('fcm_token')->nullable();
+                
+                 $table->unsignedBigInteger('role_id');
+                    $table->foreign('role_id')->references('id')->on('roles');
                 });
             }
-        
-        
+    
 
     /**
      * Reverse the migrations.

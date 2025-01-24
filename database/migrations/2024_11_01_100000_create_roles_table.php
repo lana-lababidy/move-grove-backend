@@ -10,12 +10,12 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // اسم الدور
-            $table->text('description')->nullable(); // وصف الدور
+            $table->string('name')->unique(); 
+            // $table->text('description')->nullable(); // وصف الدور
             $table->timestamps();
         });
-    }
     
+}
 
     /**
      * Reverse the migrations.

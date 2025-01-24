@@ -12,6 +12,9 @@ class loginAdmin extends Controller
 {
     public function loginAdmin(Request $request)
     {
+        if (auth()->user()->role->name !== 'admin') {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
         $validator = Validator::make($request->all(), [
             'username' => 'required|string',
             'mobile_number' => 'required|max:10',

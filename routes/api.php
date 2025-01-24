@@ -17,17 +17,6 @@ use App\Http\Controllers\ToReuseController;
 use App\Http\Controllers\TripCost;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -83,7 +72,7 @@ Route::get('/get-Trip', [TripController::class, 'getTripByUser']);
 //     Route::post('/add-car', [CarController::class, 'addCar']);
 //     Route::post('/edit-car', [CarController::class, 'editCar']);
 //     Route::delete('/delete-car', [CarController::class, 'deleteCar']);
-//     // Route::delete(uri: '/delete-city/{id}', [CityController::class, 'deleteCity']);
+// Route::get('/getTripByUser', [TripController::class, 'getTripByUser']);
 // });
 // // Client routes
 // Route::middleware(['role:Client'])->group(function () {

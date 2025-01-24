@@ -15,7 +15,10 @@ class TripController extends Controller
 {
     public function createTrip(Request $request)
     {
-        $this->authorize('create-trip');
+        // if (auth()->user()->role->name !== 'client') {
+        //     return response()->json(['error' => 'Unauthorized'], 403);
+        // }
+        // $this->authorize('create-trip');
 
         $validatedData = $request->validate([
             'source_id' => 'required|exists:cities,id',
@@ -61,7 +64,14 @@ class TripController extends Controller
     {
         // $this->authorize('add-trip');
 
+        // if (auth()->user()->role->name !== 'client') {
+        //     return response()->json(['error' => 'Unauthorized'], 403);
+        // }
 
+        // if (!auth()->check() || auth()->user()->role->name !== 'admin') {
+        //     return response()->json(['error' => 'Unauthorized'], 403);
+        // }
+        
 
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|exists:users,id',
@@ -114,6 +124,9 @@ class TripController extends Controller
     
     public function getTripByUser(Request $request)
     {
+        // if (auth()->user()->role->name !== 'admin') {
+        //     return response()->json(['error' => 'Unauthorized'], 403);
+        // }
         if ($request->has('id')) {
             $trip = Trip::find($request->id);
 
