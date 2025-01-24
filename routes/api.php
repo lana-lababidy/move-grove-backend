@@ -44,8 +44,6 @@ Route::post('/cwm', [continueWithMobile::class, 'continueWithMobile']);
 
 
 
-// Route::delete('/delete-city/{id}', [CityController::class, 'deleteCity']);
-// //مشاكل بالحذف
 // Route::post('/join-trip', [TripController::class, 'joinTrip']);
 
 // Route::post('/add-trip', [TripController::class, 'addTrip']);
@@ -69,7 +67,16 @@ Route::post('/cwm', [continueWithMobile::class, 'continueWithMobile']);
 
 Route::post('/add-car', [CarController::class, 'addCar']);
 
-Route::get('/add-trip', [TripController::class, 'addTrip']);
+Route::post('/add-trip', [TripController::class,'addTrip']);
+
+Route::post( '/add-city', [CityController::class, 'addCity']);
+
+Route::get('/cars', [CarController::class, 'getCars']);
+
+Route::get('/cities', [CityController::class, 'getCities']);
+
+Route::get('/get-Trip', [TripController::class, 'getTripByUser']);
+
 
 // SuperAdmin routes
 // Route::middleware(['role:SuperAdmin'])->group(function () {

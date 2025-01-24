@@ -39,6 +39,7 @@ class CarController extends Controller
             'name' => $car->name,
         ], 201);
     }
+    
 
     public function editCar(Request $request, $id)
     {
@@ -48,7 +49,7 @@ class CarController extends Controller
             return response()->json(['error' => 'Unauthorized'], 403); 
             // تحقق من الصلاحية لتعديل السيارة
         }
-    
+
         // التحقق من أن السيارة موجودة
         $car = Car::find($id);
         if (!$car) {
@@ -90,6 +91,27 @@ class CarController extends Controller
             return response()->json(['message' => ' Car deleted successfully']);
         } else {
             return response()->json(['message' => 'the car not found']);
+        }
+    }
+
+    public function getCars()
+    {
+        try {
+            // Fetch all cars from the database
+            $cars = Car::all();
+
+            // Return the cars as a JSON response
+            return response()->json([
+                'success' => true,
+                'data' => $cars
+            ], 200);
+        } catch (\Exception $e) {
+            // Handle any errors
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch cars.',
+                'error' => $e->getMessage()
+            ], 500);
         }
     }
 }

@@ -157,7 +157,7 @@ return [
 
     'providers' => ServiceProvider::defaultProviders()->merge([
 
-        Spatie\Permission\PermissionServiceProvider::class,
+        // Spatie\Permission\PermissionServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

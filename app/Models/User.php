@@ -10,13 +10,11 @@ use Illuminate\Notifications\Notifiable;
 // use Laravel\Passport\HasApiTokens;
 // use trait Laravel\Passport\HasApiTokens;
 use Laravel\Passport\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
 
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
-    use HasRoles;  
     use HasFactory, Notifiable;
     use HasApiTokens ;    
 

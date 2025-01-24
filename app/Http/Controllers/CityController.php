@@ -9,10 +9,10 @@ class CityController extends Controller
 {
     public function addCity(Request $request)
     {
-        $this->authorize(ability: 'add-city'); 
+        $this->authorize(ability: 'add-city');
 
         $request->validate([
-            'name' => 'required|string|max:255',
+            'c' => 'required|string|max:255',
         ]);
 
         $city = new City();
@@ -21,16 +21,25 @@ class CityController extends Controller
 
         return response()->json(['message' => 'City added successfully', 'city' => $city], 201);
     }
-    // public function deleteCity($id)
-    // {
+ 
+public function getCities()
+    {
+        try {
+            // Retrieve all cities from the database
+            $cities = City::all();
 
-    //     $city = City::find($id);
-
-    //     if (!$city) {
-    //         return response()->json(['message' => 'The city not found']);
-    //     }
-
-    //     $city->delete();
-    //     throw response()->json(['message' => 'City deleted successfully']);
-    // }
+            // Return the data as a JSON response
+            return response()->json([
+                'success' => true,
+                'data' => $cities
+            ], 200);
+        } catch (\Exception $e) {
+            // Handle errors
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch cities.',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 }
