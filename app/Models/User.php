@@ -81,5 +81,20 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    public function RattingSys()
+    {
+        return $this->hasMany(RattingSys::class, 'user_id');
+    }
+
+        // العلاقة بين المستخدمين والتقييمات التي حصلوا عليها
+        public function ratingsReceived()
+        {
+            return $this->hasMany(UserRating::class, 'rated_id');
+        }
     
+        // حساب المتوسط الحسابي لتقييمات المستخدم
+        public function averageRating()
+        {
+            return $this->ratingsReceived()->avg('rating');
+        }
 }

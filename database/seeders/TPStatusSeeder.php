@@ -13,6 +13,9 @@ class TPStatusSeeder extends Seeder
      */
     public function run(): void
     {
+            // حذف البيانات الموجودة مسبقًا
+        DB::table('t_p_statuses')->truncate();
+
         $TPStatus = [
             ['name' => 'Accepted', 'code' => '3'],
             ['name' => 'pending', 'code' => '2'],

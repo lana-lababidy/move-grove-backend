@@ -11,10 +11,12 @@ use App\Http\Controllers\generateOtp;
 use App\Http\Controllers\ContinueWithMobile;
 use App\Http\Controllers\GetTripsController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\RatingSysController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripsDetailsController;
 use App\Http\Controllers\ToReuseController;
 use App\Http\Controllers\TripCost;
+use App\Http\Controllers\UserRatingController;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -46,6 +48,10 @@ Route::get('/get-Trip-ByUser', [TripController::class, 'getTripByUser']);
 
 Route::get('/cost-trip', [TripCost::class, 'costTrip']);
 
+Route::post('/ratingsTrip', [RatingSysController::class, 'storeRating']);
+
+Route::get('/get-rating-average', [RatingSysController::class, 'getAverageRating']);
+
 // //مشكلة
 Route::post('/ratings', [RatingController::class, 'store']);
 
@@ -58,3 +64,10 @@ Route::get('/trips-details', [TripsDetailsController::class, 'show']);
 Route::get('/trips-status', [ToReuseController::class, 'getTripsStatusById']);
 
 Route::get('/trips-passengers', [ToReuseController::class, 'getTripsPassengerStatusById']);
+
+
+Route::post('/ratings-User', [RatingSysController::class, 'storeRating']);
+
+
+Route::post('/user-ratings', [UserRatingController::class, 'storeRating']);
+Route::get('/user-ratings/average', [UserRatingController::class, 'getAverageRating']);

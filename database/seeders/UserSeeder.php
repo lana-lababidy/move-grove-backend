@@ -9,24 +9,76 @@ use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {    public function run(): void
-    {
-
-        $role = Role::first(); // أو اختر دورًا محددًا
-
+    { // إنشاء سائق
         User::create([
-            'username' => 'lana',
-            'last_name' => 'lababidy',
-            'gender' => 'female',
-            'mobile_number' => '0968879073',
-            'role_id' => $role->id, // إضافة role_id
+            'last_name' => 'أحمد',
+            'username' => 'driver123',
+            'gender' => 'ذكر',
+            'expire_at' => null,  // لا يتم ملؤها
+            'mobile_number' => '0912345678',
+            'user_session' => null, // لا يتم ملؤها
+            'car_mechanics_image' => null, // لا يتم ملؤها
+            'driver_certificate_copy' => null, // لا يتم ملؤها
+            'car_insurance_copy' => null, // لا يتم ملؤها
+            'car_image' => null, // لا يتم ملؤها
+            'car_front_image' => null, // لا يتم ملؤها
+            'car_back_image' => null, // لا يتم ملؤها
+            'fcm_token' => null, // لا يتم ملؤها
+            'role_id' => 1, // افترض أن الـ role_id الخاص بالسائق هو 1 في جدول الـ roles
         ]);
-    
+
+        // إنشاء زبون
         User::create([
-            'username' => 'salem',
-            'last_name' => 'saad',
-            'gender' => 'male',
-            'mobile_number' => '0947214749',
-            'role_id' => $role->id, // إضافة role_id
+            'last_name' => 'محمود',
+            'username' => 'customer123',
+            'gender' => 'ذكر',
+            'expire_at' => null,  // لا يتم ملؤها
+            'mobile_number' => '0912345679',
+            'user_session' => null, // لا يتم ملؤها
+            'car_mechanics_image' => null, // لا يتم ملؤها
+            'driver_certificate_copy' => null, // لا يتم ملؤها
+            'car_insurance_copy' => null, // لا يتم ملؤها
+            'car_image' => null, // لا يتم ملؤها
+            'car_front_image' => null, // لا يتم ملؤها
+            'car_back_image' => null, // لا يتم ملؤها
+            'fcm_token' => null, // لا يتم ملؤها
+            'role_id' => 2, // افترض أن الـ role_id الخاص بالزبون هو 2 في جدول الـ roles
+        ]);
+
+        // إنشاء زبون
+        User::create([
+            'last_name' => 'لانا',
+            'username' => 'customer1234',
+            'gender' => 'ذكر',
+            'expire_at' => null,  // لا يتم ملؤها
+            'mobile_number' => '0912345659',
+            'user_session' => null, // لا يتم ملؤها
+            'car_mechanics_image' => null, // لا يتم ملؤها
+            'driver_certificate_copy' => null, // لا يتم ملؤها
+            'car_insurance_copy' => null, // لا يتم ملؤها
+            'car_image' => null, // لا يتم ملؤها
+            'car_front_image' => null, // لا يتم ملؤها
+            'car_back_image' => null, // لا يتم ملؤها
+            'fcm_token' => null, // لا يتم ملؤها
+            'role_id' => 2, // افترض أن الـ role_id الخاص بالزبون هو 2 في جدول الـ roles
+        ]);
+
+        // إنشاء زبون
+        User::create([
+            'last_name' => 'عمر',
+            'username' => 'customer1235',
+            'gender' => 'ذكر',
+            'expire_at' => null,  // لا يتم ملؤها
+            'mobile_number' => '0912345559',
+            'user_session' => null, // لا يتم ملؤها
+            'car_mechanics_image' => null, // لا يتم ملؤها
+            'driver_certificate_copy' => null, // لا يتم ملؤها
+            'car_insurance_copy' => null, // لا يتم ملؤها
+            'car_image' => null, // لا يتم ملؤها
+            'car_front_image' => null, // لا يتم ملؤها
+            'car_back_image' => null, // لا يتم ملؤها
+            'fcm_token' => null, // لا يتم ملؤها
+            'role_id' => 2, // افترض أن الـ role_id الخاص بالزبون هو 2 في جدول الـ roles
         ]);
     }
 }

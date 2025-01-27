@@ -20,6 +20,18 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $this->call([SyrianCitiesseeder::class, TripStatusSeeder::class, RoleSeeder::class, SettingSeeder::class, CityDistanceSeeder::class, CarSeeder::class, TPStatusSeeder::class , UserSeeder::class]);
+        $this->call([
+            TrippSeeder::class,
+            CarSeeder::class,
+            CityDistanceSeeder::class,
+            RoleSeeder::class,
+            SettingSeeder::class,
+            SyrianCitiesseeder::class,
+            TPStatusSeeder::class,
+            TPStatusSeeder::class,
+            UserSeeder::class,
+            RatingSeeder::class,
+            UserRatingSeeder::class,
+        ]);
     }
 }

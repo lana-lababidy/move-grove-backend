@@ -59,4 +59,8 @@ class Trip extends Model
     {
         return $this->morphMany(Rating::class, 'ratingable');
     }
+    public function RattingSys()
+    {
+        return $this->hasMany(RattingSys::class, 'trip_id');
+    }
 }
