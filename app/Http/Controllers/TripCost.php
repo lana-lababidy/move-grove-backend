@@ -4,67 +4,45 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class TripCost extends Controller
 {
     public function costTrip(Request $request)
-    {
-        $request->validate([
+    {  // التحقق من البيانات
+        $validator = Validator::make($request->all(), [
             'source_id' => 'required|exists:cities,id',
             'destination_id' => 'required|exists:cities,id',
         ]);
-        
-
-        // الحصول على معرف المدن من الطلب
-        $sourceId = $request->input('source_id');
-        $destinationId = $request->input('destination_id');
-
-        // جلب المدينة المصدر
-        $sourceCity = City::find($sourceId);
-
-        // التحقق من وجود المدينة المصدر
-        if (!$sourceCity) {
-            return response()->json(['error' => 'City not found'], 404);
+    
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
         }
-
-        // الحصول على المسافة بين المدن من جدول city_distances
-        $distance = $sourceCity
-                        ->distances()
-                        ->where('destination_id', $destinationId)
-                        ->first();
-
-        // إذا كانت المسافة غير موجودة
-        if (!$distance) {
-            return response()->json(['error' => 'Distance between cities not found'], 404);
-        }
-
-        // المسافة بالكيلومتر
-        $distanceKm = $distance->pivot->distance_km;
-
-        // تحديد سعر اللتر (يمكنك تعديله أو جلبه من قاعدة البيانات)
-        $fuelPricePerLiter = 1.5; // افترض 1.5 لكل لتر
-
-        // تحديد معدل استهلاك الوقود: 2.1 كم لكل لتر
-        $litersRequired = $distanceKm / 2.1;
-
-        // حساب تكلفة الوقود
-        $totalFuelCost = $litersRequired * $fuelPricePerLiter;
-
-        // إضافة ربح الشركة (افترض ربح 20%)
-        $companyProfit = 0.20 * $totalFuelCost;
-
-        // حساب التكلفة الإجمالية
-        $totalCost = $totalFuelCost + $companyProfit;
-
-        // إرجاع التكلفة مع تفاصيل الرحلة
+    
+        // تعيين القيم من الطلب
+        $source_id = $request->source_id;
+        $destination_id = $request->destination_id;
+    
+        // جلب أسماء المدن بناءً على المعرفات
+        $source_city = DB::table('cities')->where('id', $source_id)->value('name');
+        $destination_city = DB::table('cities')->where('id', $destination_id)->value('name');
+    
+        // حساب المسافة والتكلفة
+        $distance_km = DB::table('city_distances')
+            ->where('source_id', $source_id)
+            ->where('destination_id', $destination_id)
+            ->value('distance_km');
+    
+        $fuel_price_per_liter = DB::table('settings')->where('id', '1')->value('value');
+        $minPrice = (($fuel_price_per_liter * 20) * $distance_km) / 200;
+    
+        // إرجاع الاستجابة مع الأسماء
         return response()->json([
-            'source_id' => $sourceId,
-            'destination_id' => $destinationId,
-            'distance_km' => $distanceKm,
-            'liters_required' => $litersRequired,
-            'fuel_cost' => $totalFuelCost,
-            'company_profit' => $companyProfit,
-            'total_cost' => $totalCost,
+            'source_city' => $source_city,
+            'destination_city' => $destination_city,
+            'distance_km' => $distance_km,
+            'minPrice' => $minPrice,
         ]);
     }
 }

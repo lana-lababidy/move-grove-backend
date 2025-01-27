@@ -44,17 +44,17 @@ Route::get('/get-trips', [GetTripsController::class, 'getTrips']);
 
 Route::get('/get-Trip-ByUser', [TripController::class, 'getTripByUser']);
 
-// //مشكلة
-Route::get('/trips-passengers', [ToReuseController::class, 'getTripsPassengerStatusById']);
+Route::get('/cost-trip', [TripCost::class, 'costTrip']);
 
+// //مشكلة
 Route::post('/ratings', [RatingController::class, 'store']);
 
 Route::get('/showWithAverage', [RatingController::class, 'showWithAverage']);
-
-Route::post('/cost-trip', [TripCost::class, 'costTrip']);
 
 Route::get('/avilable-trips', action: [GetTripsController::class, 'index']);
 
 Route::get('/trips-details', [TripsDetailsController::class, 'show']);
 
 Route::get('/trips-status', [ToReuseController::class, 'getTripsStatusById']);
+
+Route::get('/trips-passengers', [ToReuseController::class, 'getTripsPassengerStatusById']);
