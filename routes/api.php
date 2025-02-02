@@ -5,6 +5,7 @@ use App\Http\Controllers\AddCity;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\loginAdmin;
+use App\Http\Controllers\TripUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\generateOtp;
@@ -36,9 +37,9 @@ Route::post('/cwm', [continueWithMobile::class, 'continueWithMobile']);
 
 Route::post('/add-car', [CarController::class, 'addCar']);
 
-Route::post('/add-trip', [TripController::class,'addTrip']);
+Route::post('/add-trip', [TripController::class, 'addTrip']);
 
-Route::post( '/add-city', [CityController::class, 'addCity']);
+Route::post('/add-city', [CityController::class, 'addCity']);
 
 Route::get('/get-cars', [CarController::class, 'getCars']);
 
@@ -52,22 +53,19 @@ Route::post('/ratingsTrip', [RatingSysController::class, 'storeRating']);
 
 Route::get('/get-rating-average', [RatingSysController::class, 'getAverageRating']);
 
-// //مشكلة
-Route::post('/ratings', [RatingController::class, 'store']);
-
-Route::get('/showWithAverage', [RatingController::class, 'showWithAverage']);
-
-Route::get('/avilable-trips', action: [GetTripsController::class, 'index']);
-
 Route::get('/trips-details', [TripsDetailsController::class, 'show']);
 
-Route::get('/trips-status', [ToReuseController::class, 'getTripsStatusById']);
+Route::get('/trips-status/{id}', [ToReuseController::class, 'getTripsStatusById']); //شغال بس مو منطقي
 
-Route::get('/trips-passengers', [ToReuseController::class, 'getTripsPassengerStatusById']);
+// //مشكلة
+Route::get('/avilable-trips', action: [GetTripsController::class, 'index']);
 
-
-Route::post('/ratings-User', [RatingSysController::class, 'storeRating']);
-
+Route::get('/trips-passengers/{id}', [ToReuseController::class, 'getTripsPassengerStatusById']);
 
 Route::post('/user-ratings', [UserRatingController::class, 'storeRating']);
+
 Route::get('/user-ratings/average', [UserRatingController::class, 'getAverageRating']);
+
+Route::post('/join-trip', [TripUser::class, 'joinTrip']);
+
+//6

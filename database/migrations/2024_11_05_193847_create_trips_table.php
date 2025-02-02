@@ -18,22 +18,27 @@ return new class extends Migration
             $table->decimal('price');
             $table->dateTime('dateTime');
             $table->string('notes');
-
+            $table->string('destination'); 
+            $table->string('source');
             $table->timestamps();
 
-            $table->unsignedBigInteger('driver_id')->nullable()->default(null); // تعديل العمود ليقبل القيمة NULL افتراضيًا
+              
+
+            $table->unsignedBigInteger('driver_id')->nullable()->default(null); 
 
             $table->foreign('driver_id')->references('id')->on('users')
                 ->onDelete('cascade');
 
                 
-            $table->foreignId('car_id')->constrained('cars')->onDelete('cascade');
+            $table->foreignId('car_id')->nullable()->constrained('cars')->onDelete('cascade');
+
+
+            $table->foreignId('status_id')->nullable()->constrained('trip_statuses')->onDelete('cascade');
+
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+   
     public function down(): void
     {
         Schema::dropIfExists('trips');

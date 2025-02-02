@@ -17,8 +17,11 @@ class Trip extends Model
         'price',
         'car_id',
         'dateTime',
+        'status_id',
         'notes',
     ];
+
+
 
     public function driver()
     {
@@ -35,14 +38,14 @@ class Trip extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function TripStatus()
-    {
-        return $this->hasOne(TripStatus::class);
-    }
+    // public function TripStatus()
+    // {
+    //     return $this->hasOne(TripStatus::class);
+    // }
 
-    public function TripPassengers()
+    public function Tripuser()
     {
-        return $this->hasMany(TripPassenger::class);
+        return $this->hasMany(Tripuser::class);
     }
 
     public function TPStatus()
@@ -63,4 +66,16 @@ class Trip extends Model
     {
         return $this->hasMany(RattingSys::class, 'trip_id');
     }
+    public function passengerrs()
+{
+    return $this->belongsToMany(User::class, 'trip_users', 'trip_id', 'client_id')
+                ->withPivot('status', 'source_id', 'destination_id')
+                ->withTimestamps();
+}
+
+public function status()
+{
+    return $this->belongsTo(TripStatus::class, 'status_id');
+}
+
 }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trip_passengers', function (Blueprint $table) {
+        Schema::create('trip_users', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignId('trip_id')->constrained('trips');
@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('source_id')->constrained('cities')->onDelete('cascade');
             $table->foreignId('destination_id')->constrained('cities')->onDelete('cascade');
             
+            $table->string('status')->default('pending'); // حالة الطلب (معلق، مقبول، إلخ)
         });
     }
 
@@ -31,6 +32,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trip_passengers');
+        
+        Schema::dropIfExists('trip_users');
     }
 };

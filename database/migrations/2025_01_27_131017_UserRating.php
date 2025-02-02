@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('rated_user_id'); // المستخدم الذي يتم تقييمه
             $table->decimal('rating', 2, 1); // التقييم (من 0 إلى 5)
             $table->text('review')->nullable(); // يمكن إضافة تعليق مع التقييم (اختياري)
+            $table->string('status')->default('visible'); 
             $table->timestamps();            
             $table->foreign('rated_user_id')->references('id')->on('users')->onDelete('cascade');
         });

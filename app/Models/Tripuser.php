@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TripPassenger extends Model
+class Tripuser extends Model
 {
     use HasFactory;
-
-
+    protected $table = 'trip_users';
+    
     protected $fillable = [
         'client_id',
         'trip_id',

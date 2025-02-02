@@ -16,11 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('code')->default('DEFAULT_CODE')->unique();
-            
-            $table->unsignedBigInteger('trip_id')->nullable()->default(null); // تعديل العمود ليقبل القيمة NULL افتراضيًا
-            
-            $table->foreign('trip_id')->references('id')->on('trips')->onDelete('cascade');
-                
+                        
         });
     }
 

@@ -14,13 +14,17 @@ class TripStatus extends Model
         'name',
         'code',
     ];
-    public function trip()
+    // public function trip()
+    // {
+    //     return $this->belongsTo(Trip::class);
+    // }
+    public function trips()
     {
-        return $this->belongsTo(Trip::class);
+        return $this->hasMany(Trip::class, 'status_id');
     }
 
     public function passenger()
     {
-        return $this->belongsTo(TripPassenger::class);
+        return $this->belongsTo(Tripuser::class);
     }
 }

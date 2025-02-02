@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             SyrianCitiesseeder::class,
             TPStatusSeeder::class,
-            TPStatusSeeder::class,
+            TripStatusSeeder::class,
             UserSeeder::class,
             RatingSeeder::class,
             UserRatingSeeder::class,

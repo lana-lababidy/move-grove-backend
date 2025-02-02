@@ -52,7 +52,7 @@ class User extends Authenticatable
 
     public function trip_passenger()
     {
-        return $this->hasOne(TripPassenger::class);
+        return $this->hasOne(Tripuser::class);
     }
 
     public function trips()
@@ -62,9 +62,9 @@ class User extends Authenticatable
                     // إضافة عمود الحالة في الجدول الوسيط
     }
 
-    public function tripPassengers()
+    public function Tripusers()
     {
-        return $this->hasMany(TripPassenger::class);
+        return $this->hasMany(Tripuser::class);
     }
 
     
@@ -97,4 +97,12 @@ class User extends Authenticatable
         {
             return $this->ratingsReceived()->avg('rating');
         }
+
+        public function tripps()
+{
+    return $this->belongsToMany(Trip::class, 'trip_passengers', 'client_id', 'trip_id')
+                ->withPivot('status', 'source_id', 'destination_id')
+                ->withTimestamps();
+}
+
 }

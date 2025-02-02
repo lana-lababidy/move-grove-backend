@@ -15,13 +15,13 @@ class TPStatus extends Model
         'name',
         'code',
     ];
-    public function tripPassengers()
+    public function Tripuser()
     {
-        return $this->hasOne(TripPassenger::class, 'trip_passenger');
+        return $this->hasOne(Tripuser::class, 'Tripuser');
     }
 
-    public function trip_passenger()
+    public function Tripuserr()
     {
-        return $this->hasOne(TripPassenger::class);
+        return $this->hasOne(Tripuser::class);
     }
 }

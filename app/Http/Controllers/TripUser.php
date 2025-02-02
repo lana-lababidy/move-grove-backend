@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Trip;
-use Dotenv\Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class TripPassenger extends Controller
+class TripUser extends Controller
 {
     public function joinTrip(Request $request)
     {
-        $this->authorize('join-trip');
+        // $this->authorize(ability: 'join-trip');
 
         $validator = Validator::make($request->all(), [
             'trip_id' => 'required|integer|exists:trips,id',
@@ -33,7 +33,7 @@ class TripPassenger extends Controller
         $user = Auth::user();
 
         // تحقق إذا كان المستخدم قد انضم بالفعل
-        $existingPassenger = TripPassenger::where('trip_id', $trip_id)
+        $existingPassenger = TripUser::where('trip_id', $trip_id)
             ->where('client_id', $user->id)
             ->first();
 
@@ -42,7 +42,7 @@ class TripPassenger extends Controller
         }
 
         // إنشاء سجل جديد في TripPassenger
-        TripPassenger::create(attributes: [
+        TripUser::create(attributes: [
             'client_id' => $user->id,
             'trip_id' => $trip_id,
             'source_id' => $request->source_id,

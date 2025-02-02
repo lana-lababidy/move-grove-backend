@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Log;
 
 class GetTripsController extends Controller
 {
-    public function index(Request $request)
+    public function getAvailableTrips(Request $request)
     {
 
         // جلب الرحلات التي حالتها "نشطة" من خلال جدول TripStatus
         $trips = Trip::whereHas('TripStatus', function ($query) {
-            $query->where('name', 'Avilable'); // تأكد من أن "status" هو اسم العمود الصحيح في جدول "trip_statuses"
+            $query->where('code', '1'); // تأكد من أن "status" هو اسم العمود الصحيح في جدول "trip_statuses"
         })->get();
 
         // إرجاع البيانات بصيغة JSON

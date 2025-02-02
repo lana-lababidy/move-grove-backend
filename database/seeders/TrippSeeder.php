@@ -34,12 +34,13 @@ class TrippSeeder extends Seeder
 
         // إدخال بيانات للرحلات
         DB::table('trips')->insert([
+            'status_id'=>'1',
             'total_seats' => 4,
             'price' => 150.00,
             'dateTime' => Carbon::now()->addDays(2), // تاريخ الرحلة بعد يومين من الآن
             'notes' => 'رحلة من دمشق إلى حلب',
             'driver_id' => $driverId, // إضافة معرف السائق
-            'car_id' => $carId, // إضافة معرف السيارة
+            'car_id' => 1, // تأكد من إضافة car_id
         ]);
     }
 }
