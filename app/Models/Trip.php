@@ -17,7 +17,9 @@ class Trip extends Model
         'price',
         'car_id',
         'dateTime',
-        'status_id',
+        // 'status_id',
+            'source',
+            'destination', // تأكد من وجود هذا الحقل
         'notes',
     ];
 

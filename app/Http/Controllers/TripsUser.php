@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Trip;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\TripUser;
 
-class TripUser extends Controller
+class TripsUser extends Controller
 {
     public function joinTrip(Request $request)
     {

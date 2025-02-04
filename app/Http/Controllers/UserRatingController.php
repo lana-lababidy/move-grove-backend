@@ -13,8 +13,9 @@ class UserRatingController extends Controller
         // التحقق من صحة البيانات المدخلة
         $validator = Validator::make($request->all(), [
             'rated_user_id' => 'required|exists:users,id', // المستخدم الذي يتم تقييمه
-            'rating_user_id' => 'required|exists:users,id', // المستخدم الذي يقوم بالتقييم
+            'rating_user_id' => 'required|exists:users,id', // المستخدم الذي يقوم بالتقييم'
             'rating' => 'required|numeric|min:0|max:5',
+
         ]);
 
         if ($validator->fails()) {

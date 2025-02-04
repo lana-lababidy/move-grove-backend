@@ -15,7 +15,7 @@ class TripController extends Controller
 {
     public function addTrip(Request $request)
     {
-        
+
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|exists:users,id',
             'source_id' => 'required|exists:cities,id',
@@ -48,8 +48,9 @@ class TripController extends Controller
         // إنشاء الرحلة
         $trip = Trip::create([
             'user_id' => $request->user_id,
-            'source_id' => $request->source_id,
-            'destination_id' => $request->destination_id,
+            'source' => City::find($request->source_id)->name, // Convert ID to name
+            'destination' => City::find($request->destination_id)->name,
+
             'dateTime' => $request->dateTime,
             'total_seats' => $request->total_seats,
             'price' => $minPrice,
@@ -64,10 +65,10 @@ class TripController extends Controller
             'data' => $trip,
         ]);
     }
-    
+
     public function getTripByUser(Request $request)
     {
-      
+
         if ($request->has('id')) {
             $trip = Trip::find($request->id);
 

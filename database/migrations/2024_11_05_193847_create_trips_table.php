@@ -32,8 +32,10 @@ return new class extends Migration
                 
             $table->foreignId('car_id')->nullable()->constrained('cars')->onDelete('cascade');
 
+            
+            // $table->unsignedBigInteger('status_id');
+            // $table->foreign('status_id')->references('id')->on('tripStatuses')->onDelete('cascade');
 
-            $table->foreignId('status_id')->nullable()->constrained('trip_statuses')->onDelete('cascade');
 
         });
     }

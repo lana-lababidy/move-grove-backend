@@ -17,9 +17,11 @@ use App\Http\Controllers\TripController;
 use App\Http\Controllers\TripsDetailsController;
 use App\Http\Controllers\ToReuseController;
 use App\Http\Controllers\TripCost;
+use App\Http\Controllers\TripsUser;
 use App\Http\Controllers\UserRatingController;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Laravel\Passport\Http\Controllers\AccessTokenController;
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -28,6 +30,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 /*DONE */
+Route::post('/login', [AccessTokenController::class, 'issueToken'])
+    ->middleware('throttle:60,1')
+    ->name('passport.token');
 
 Route::post('/login-admin', [loginAdmin::class, 'loginAdmin']);
 
@@ -49,7 +54,7 @@ Route::get('/get-Trip-ByUser', [TripController::class, 'getTripByUser']);
 
 Route::get('/cost-trip', [TripCost::class, 'costTrip']);
 
-Route::post('/ratingsTrip', [RatingSysController::class, 'storeRating']);
+Route::post('/ratings-trip', [RatingSysController::class, 'storeRating']);
 
 Route::get('/get-rating-average', [RatingSysController::class, 'getAverageRating']);
 
@@ -57,15 +62,15 @@ Route::get('/trips-details', [TripsDetailsController::class, 'show']);
 
 Route::get('/trips-status/{id}', [ToReuseController::class, 'getTripsStatusById']); //شغال بس مو منطقي
 
+Route::post('/ratings-user', [UserRatingController::class, 'storeRating']);
+
+Route::get('/user-ratings-average', [UserRatingController::class, 'getAverageRating']);
+
 // //مشكلة
 Route::get('/avilable-trips', action: [GetTripsController::class, 'index']);
 
-Route::get('/trips-passengers/{id}', [ToReuseController::class, 'getTripsPassengerStatusById']);
+Route::get('/trips-passengers/{trip_id}/{passenger_id}', [ToReuseController::class, 'getTripsPassengerStatusById']);
 
-Route::post('/user-ratings', [UserRatingController::class, 'storeRating']);
-
-Route::get('/user-ratings/average', [UserRatingController::class, 'getAverageRating']);
-
-Route::post('/join-trip', [TripUser::class, 'joinTrip']);
+Route::post('/join-trip', [TripsUser::class, 'joinTrip']);
 
 //6
