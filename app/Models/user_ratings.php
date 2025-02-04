@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserRating extends Model
+class user_ratings extends Model
 {
-    protected $table = 'UserRating';
+    protected $table = 'user_ratings';
 
     use HasFactory;
     protected $fillable = [

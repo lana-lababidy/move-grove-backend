@@ -57,8 +57,12 @@ class Trip extends Model
 
     public function passengers()
     {
-        return $this->belongsToMany(User::class, 'trip_user')->withPivot('status');
+        return $this->belongsToMany(User::class, 'trip_users', 'trip_id', 'client_id')
+                    ->withPivot('status', 'source_id', 'destination_id')
+                    ->withTimestamps();
     }
+    
+    
 
     public function ratings()
     {

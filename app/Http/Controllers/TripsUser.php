@@ -32,6 +32,11 @@ class TripsUser extends Controller
 
         $user = Auth::user();
 
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+        
+        
         // تحقق إذا كان المستخدم قد انضم بالفعل
         $existingPassenger = TripUser::where('trip_id', $trip_id)
             ->where('client_id', $user->id)

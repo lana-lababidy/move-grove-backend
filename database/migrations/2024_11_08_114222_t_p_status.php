@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('code')->default(value: 'DEFAULT_CODE')->unique();
             $table->timestamps();
 
-            $table->unsignedBigInteger('trip_passenger_id')->nullable()->default(null);
+            $table->unsignedBigInteger('trip_user_id')->nullable()->default(null);
 
-            $table->foreign('trip_passenger_id')
+            $table->foreign('trip_user_id')
                 ->references('id')
                 ->on(table: 'trip_users')
                 ->onDelete('cascade');

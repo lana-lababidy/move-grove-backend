@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\UserRating;
+use App\Models\user_ratings;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -23,7 +23,7 @@ class UserRatingSeeder extends Seeder
         ];
         // إدخال البيانات إلى الجدول
         foreach ($ratings as $rating) {
-            UserRating::create($rating);
+            user_ratings::create($rating);
         }
     }
 }

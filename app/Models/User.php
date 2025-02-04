@@ -94,7 +94,7 @@ class User extends Authenticatable
         // العلاقة بين المستخدمين والتقييمات التي حصلوا عليها
         public function ratingsReceived()
         {
-            return $this->hasMany(UserRating::class, 'rated_id');
+            return $this->hasMany(user_ratings::class, 'rated_id');
         }
     
         // حساب المتوسط الحسابي لتقييمات المستخدم
@@ -104,10 +104,12 @@ class User extends Authenticatable
         }
 
         public function tripps()
-{
-    return $this->belongsToMany(Trip::class, 'trip_passengers', 'client_id', 'trip_id')
-                ->withPivot('status', 'source_id', 'destination_id')
-                ->withTimestamps();
-}
+        {
+            return $this->belongsToMany(Trip::class, 'trip_users', 'client_id', 'trip_id')
+                        ->withPivot('status', 'source_id', 'destination_id')
+                        ->withTimestamps();
+        }
+        
+
 
 }

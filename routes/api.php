@@ -60,17 +60,14 @@ Route::get('/get-rating-average', [RatingSysController::class, 'getAverageRating
 
 Route::get('/trips-details', [TripsDetailsController::class, 'show']);
 
-Route::get('/trips-status/{id}', [ToReuseController::class, 'getTripsStatusById']); //شغال بس مو منطقي
-
+Route::get('/trips-status/{id}', [ToReuseController::class, 'getTripsStatusById']); 
 Route::post('/ratings-user', [UserRatingController::class, 'storeRating']);
 
 Route::get('/user-ratings-average', [UserRatingController::class, 'getAverageRating']);
 
+Route::get('/trips-passengers/{trip_id}/{passenger_id}', [ToReuseController::class, 'getTripsPassengerStatusById']);
+
 // //مشكلة
 Route::get('/avilable-trips', action: [GetTripsController::class, 'index']);
 
-Route::get('/trips-passengers/{trip_id}/{passenger_id}', [ToReuseController::class, 'getTripsPassengerStatusById']);
-
 Route::post('/join-trip', [TripsUser::class, 'joinTrip']);
-
-//6

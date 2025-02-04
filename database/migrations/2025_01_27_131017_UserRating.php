@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('UserRating', function (Blueprint $table) {
+        Schema::create('user_ratings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('rated_user_id'); // المستخدم الذي يتم تقييمه
             
