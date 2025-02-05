@@ -29,12 +29,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/*DONE */
-Route::post('/login', [AccessTokenController::class, 'issueToken'])
-    ->middleware('throttle:60,1')
-    ->name('passport.token');
+// /*DONE */
+// Route::post('/login', [AccessTokenController::class, 'issueToken'])
+//     ->middleware('throttle:60,1')
+//     ->name('passport.token');
 
-Route::post('/login-admin', [loginAdmin::class, 'loginAdmin']);
 
 Route::post('/generate-otp', [generateOtp::class, 'generateOtp']);
 
@@ -61,6 +60,7 @@ Route::get('/get-rating-average', [RatingSysController::class, 'getAverageRating
 Route::get('/trips-details', [TripsDetailsController::class, 'show']);
 
 Route::get('/trips-status/{id}', [ToReuseController::class, 'getTripsStatusById']); 
+
 Route::post('/ratings-user', [UserRatingController::class, 'storeRating']);
 
 Route::get('/user-ratings-average', [UserRatingController::class, 'getAverageRating']);
@@ -71,3 +71,5 @@ Route::get('/trips-passengers/{trip_id}/{passenger_id}', [ToReuseController::cla
 Route::get('/avilable-trips', action: [GetTripsController::class, 'index']);
 
 Route::post('/join-trip', [TripsUser::class, 'joinTrip']);
+
+Route::post('/login-admin', [loginAdmin::class, 'loginAdmin']);
