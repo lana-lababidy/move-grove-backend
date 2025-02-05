@@ -67,9 +67,10 @@ Route::get('/user-ratings-average', [UserRatingController::class, 'getAverageRat
 
 Route::get('/trips-passengers/{trip_id}/{passenger_id}', [ToReuseController::class, 'getTripsPassengerStatusById']);
 
+Route::post('/join-trip', [TripsUser::class, 'joinTrip']);
+
 // //مشكلة
 Route::get('/avilable-trips', action: [GetTripsController::class, 'index']);
 
-Route::post('/join-trip', [TripsUser::class, 'joinTrip']);
-
 Route::post('/login-admin', [loginAdmin::class, 'loginAdmin']);
+

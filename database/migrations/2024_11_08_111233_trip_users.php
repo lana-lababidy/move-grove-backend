@@ -16,8 +16,11 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('trip_id')->constrained('trips');
 
-            $table->foreignId('client_id')->constrained('users')->onDelete('cascade');
+            // $table->foreignId('client_id')->constrained('users')->onDelete('cascade');
            
+            $table->foreignId('client_id')->nullable()->constrained('users')->onDelete('cascade')->index();
+
+            
             $table->foreignId('source_id')->constrained('cities')->onDelete('cascade');
             $table->foreignId('destination_id')->constrained('cities')->onDelete('cascade');
             
