@@ -9,7 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 // use Laravel\Passport\HasApiTokens;
 // use trait Laravel\Passport\HasApiTokens;
-use Laravel\Passport\HasApiTokens;
+// use Laravel\Passport\HasApiTokens;
+use Laravel\Sanctum\HasApiTokens;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -71,8 +71,6 @@ Route::get('/trips-passengers/{trip_id}/{passenger_id}', [ToReuseController::cla
 
 Route::post('/join-trip', [TripsUser::class, 'joinTrip']);
 
-
-
  //مشكلة
 Route::get('/available-trips', [GetTripsController::class, 'getAvailableTrips']);
 

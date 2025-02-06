@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
 
 // class AuthServiceProvider extends ServiceProvider
@@ -47,21 +46,19 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->registerPolicies();
+    //     $this->registerPolicies();
 
 
-    Passport::tokensCan([
-        'user' => 'Access general user resources',
-        'admin' => 'Access admin resources',
-    ]);
-        // لا حاجة لاستدعاء Passport::routes() في Laravel Passport 11.x
+    // Passport::tokensCan([
+    //     'user' => 'Access general user resources',
+    //     'admin' => 'Access admin resources',
+    // ]);
+    //     // لا حاجة لاستدعاء Passport::routes() في Laravel Passport 11.x
 
-        // تحديد وقت انتهاء صلاحية التوكنات
-        Passport::tokensExpireIn(now()->addDays(15));
-        Passport::refreshTokensExpireIn(now()->addDays(30));
-        Passport::personalAccessTokensExpireIn(now()->addMonths(6));
-    }
+    //     // تحديد وقت انتهاء صلاحية التوكنات
+    //     Passport::tokensExpireIn(now()->addDays(15));
+    //     Passport::refreshTokensExpireIn(now()->addDays(30));
+    //     Passport::personalAccessTokensExpireIn(now()->addMonths(6));
+    // }
 }
-
-
-
+}

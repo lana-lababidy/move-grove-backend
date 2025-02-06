@@ -38,7 +38,8 @@ public function loginAdmin(Request $request)
         }
 
         // إنشاء Access Token
-        $token = $user->createToken('AdminAccessToken')->accessToken;
+        // $token = $user->createToken('AdminAccessToken')->accessToken;
+        $token = $user->createToken('AdminAccessToken')->plainTextToken;
 
         return response()->json([
             'data' => $user,
@@ -46,3 +47,4 @@ public function loginAdmin(Request $request)
         ]);
     }
 }
+
