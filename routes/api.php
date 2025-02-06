@@ -49,6 +49,8 @@ Route::get('/get-cars', [CarController::class, 'getCars']);
 
 Route::get('/get-trips', [GetTripsController::class, 'getTrips']);
 
+Route::get('/get-cities', [CityController::class, 'getCities']);
+
 Route::get('/get-Trip-ByUser', [TripController::class, 'getTripByUser']);
 
 Route::get('/cost-trip', [TripCost::class, 'costTrip']);
@@ -69,8 +71,10 @@ Route::get('/trips-passengers/{trip_id}/{passenger_id}', [ToReuseController::cla
 
 Route::post('/join-trip', [TripsUser::class, 'joinTrip']);
 
-// //مشكلة
-Route::get('/avilable-trips', action: [GetTripsController::class, 'index']);
+
+
+ //مشكلة
+Route::get('/available-trips', [GetTripsController::class, 'getAvailableTrips']);
 
 Route::post('/login-admin', [loginAdmin::class, 'loginAdmin']);
 
