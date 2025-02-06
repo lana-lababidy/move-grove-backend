@@ -5,6 +5,7 @@ use App\Http\Controllers\AddCity;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\loginAdmin;
+use App\Http\Controllers\loginClient;
 use App\Http\Controllers\TripUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     ->middleware('throttle:60,1')
 //     ->name('passport.token');
 
+Route::post('/login-admin', [loginAdmin::class, 'loginAdmin']);
 
 Route::post('/generate-otp', [generateOtp::class, 'generateOtp']);
 
@@ -74,5 +76,5 @@ Route::post('/join-trip', [TripsUser::class, 'joinTrip']);
  //مشكلة
 Route::get('/available-trips', [GetTripsController::class, 'getAvailableTrips']);
 
-Route::post('/login-admin', [loginAdmin::class, 'loginAdmin']);
 
+Route::post('/login-client', [loginClient::class, 'loginClient']);
